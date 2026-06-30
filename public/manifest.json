@@ -1,0 +1,18 @@
+{
+  "name": "おかねの予定帳",
+  "short_name": "おかね予定",
+  "description": "サブスク・定期便・引き落としをカレンダーで整理。引き落とし前に必要な金額と口座をひと目で把握できる予定帳。",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f6f0",
+  "theme_color": "#5c8d89",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

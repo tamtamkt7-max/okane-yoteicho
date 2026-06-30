@@ -1,0 +1,762 @@
+/* globals.css */
+
+:root {
+  --bg-color: #f7f6f0;       /* Soft ivory background */
+  --card-bg: #ffffff;        /* Pure white for cards */
+  --text-primary: #374151;   /* Deep charcoal gray */
+  --text-secondary: #6b7280; /* Muted gray */
+  --text-light: #9ca3af;     /* Light gray for borders/disabled */
+  
+  /* Curated Palette */
+  --color-primary: #5c8d89;       /* Muted dusty teal */
+  --color-primary-light: #e6efed; /* Very light teal tint */
+  --color-accent: #e29770;        /* Soft terracotta orange */
+  --color-accent-light: #fdf2eb;  /* Light orange tint */
+  --color-success: #74b49b;       /* Sage green for paid/confirmed */
+  --color-success-light: #ebf6f1; /* Light green tint */
+  --color-danger: #e27070;        /* Soft coral red for warnings */
+  --color-danger-light: #fdf1f1;  /* Light coral tint */
+  --color-neutral: #8ba19d;       /* Muted gray-teal */
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --box-shadow: 0 4px 12px rgba(92, 141, 137, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --box-shadow-hover: 0 6px 16px rgba(92, 141, 137, 0.1);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+}
+
+/* Themes */
+.app-container.theme-ivory {
+  --bg-color: #f7f6f0;
+  --card-bg: #ffffff;
+  --text-primary: #374151;
+  --text-secondary: #6b7280;
+  --color-primary: #5c8d89;
+  --color-primary-light: #e6efed;
+  --color-accent: #e29770;
+  --color-accent-light: #fdf2eb;
+}
+
+.app-container.theme-sakura {
+  --bg-color: #fcf5f5;
+  --card-bg: #ffffff;
+  --text-primary: #4a3535;
+  --text-secondary: #8c7070;
+  --color-primary: #e08b98;
+  --color-primary-light: #fcecef;
+  --color-accent: #e59a73;
+  --color-accent-light: #fdf3eb;
+}
+
+.app-container.theme-mint {
+  --bg-color: #f0f7f4;
+  --card-bg: #ffffff;
+  --text-primary: #2c3e35;
+  --text-secondary: #5e776a;
+  --color-primary: #4e8c75;
+  --color-primary-light: #e6f2ed;
+  --color-accent: #e09f67;
+  --color-accent-light: #fdf4eb;
+}
+
+.app-container.theme-midnight {
+  --bg-color: #121820;
+  --card-bg: #1a2330;
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --text-light: #4a5568;
+  --color-primary: #4fd1c5;
+  --color-primary-light: #234e52;
+  --color-accent: #f6ad55;
+  --color-accent-light: #463020;
+  --color-success: #68d391;
+  --color-success-light: #1c4532;
+  --color-danger: #fc8181;
+  --color-danger-light: #642020;
+}
+
+.theme-midnight .form-control {
+  background-color: #151d27;
+  border-color: rgba(79, 209, 197, 0.2);
+}
+.theme-midnight .app-header {
+  background-color: #1a2330;
+}
+.theme-midnight .app-nav {
+  background-color: rgba(26, 35, 48, 0.95);
+}
+.theme-midnight select option {
+  background-color: #1a2330;
+  color: #e2e8f0;
+}
+.theme-midnight .calendar-cell {
+  background-color: #161e2a;
+  border-color: rgba(79, 209, 197, 0.05);
+}
+.theme-midnight .calendar-cell.outside {
+  opacity: 0.2;
+}
+.theme-midnight .modal-content {
+  background-color: #121820;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #e2e5e2; /* Desktop backdrop color */
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 15px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Base phone viewport container for both mobile & desktop */
+.app-container {
+  width: 100%;
+  max-width: 480px; /* Standard mobile width on desktop */
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ensure full screen height on mobile browsers (addressing 100vh issue) */
+@supports (-webkit-touch-callout: none) {
+  .app-container {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Header styling */
+.app-header {
+  background-color: var(--card-bg);
+  padding: 16px 20px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(92, 141, 137, 0.08);
+}
+
+.app-header h1 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.02em;
+}
+
+.app-header p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Navigation bar */
+.app-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid rgba(92, 141, 137, 0.1);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: content-box;
+  z-index: 200;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 20%;
+  height: 100%;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--text-secondary);
+  fill: none;
+  stroke-width: 2;
+  transition: var(--transition);
+}
+
+.nav-item.active {
+  color: var(--color-primary);
+}
+
+.nav-item.active svg {
+  stroke: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Tab Content area */
+.tab-content {
+  flex: 1;
+  padding: 16px 16px 96px; /* Extra bottom padding for floating navigation */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card layout */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-md);
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(92, 141, 137, 0.04);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--box-shadow-hover);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius-sm);
+  border: 1.5px solid rgba(92, 141, 137, 0.15);
+  background-color: #fafaf8;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--card-bg);
+  box-shadow: 0 0 0 3px rgba(92, 141, 137, 0.1);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 8px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #4b7470;
+}
+
+.btn-secondary {
+  background-color: rgba(92, 141, 137, 0.1);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(92, 141, 137, 0.18);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-light);
+}
+
+.btn-danger {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  border: 1.5px solid rgba(226, 112, 112, 0.2);
+}
+
+.btn-danger:hover {
+  background-color: #fce7e7;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+/* Badges and indicators */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.badge-info {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.badge-accent {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.badge-success {
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.badge-danger {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+/* Category icon styles */
+.cat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.cat-subscription { background-color: #edf2f7; color: #4a5568; }
+.cat-communication { background-color: #ebf8ff; color: #2b6cb0; }
+.cat-utilities { background-color: #feebc8; color: #dd6b20; }
+.cat-insurance { background-color: #e6fffa; color: #319795; }
+.cat-housing { background-color: #e2e8f0; color: #4a5568; }
+.cat-children { background-color: #fbb6ce33; color: #d53f8c; }
+.cat-delivery { background-color: #faf5ff; color: #805ad5; }
+.cat-creditCard { background-color: #ebf8ff; color: #2b6cb0; }
+.cat-other { background-color: #f7fafc; color: #4a5568; }
+
+/* Grid systems & Flex helpers */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+
+/* Modal overlays */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Slides up from bottom on mobile */
+}
+
+@media(min-width: 480px) {
+  .modal-overlay {
+    align-items: center;
+  }
+}
+
+.modal-content {
+  background-color: var(--bg-color);
+  width: 100%;
+  max-width: 480px;
+  border-top-left-radius: var(--border-radius-lg);
+  border-top-right-radius: var(--border-radius-lg);
+  padding: 24px 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.1);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media(min-width: 480px) {
+  .modal-content {
+    border-radius: var(--border-radius-md);
+    margin: 20px;
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Empty states */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  font-size: 0.8rem;
+  max-width: 260px;
+  margin-bottom: 16px;
+}
+
+/* Utility text styles */
+.text-danger { color: var(--color-danger); }
+.text-success { color: var(--color-success); }
+.text-accent { color: var(--color-accent); }
+.text-secondary { color: var(--text-secondary); }
+.font-bold { font-weight: 700; }
+.font-black { font-weight: 900; }
+.text-center { text-align: center; }
+
+/* Custom calendar components layout */
+.calendar-header-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-cell {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px;
+  border: 1px solid rgba(92, 141, 137, 0.05);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.calendar-cell:hover {
+  background-color: var(--color-primary-light);
+}
+
+.calendar-cell.outside {
+  opacity: 0.35;
+}
+
+.calendar-cell.selected {
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.calendar-cell.today {
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.calendar-cell-date {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.calendar-cell-indicator {
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-align: right;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-count {
+  color: var(--text-secondary);
+}
+
+.calendar-sum {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+/* --- Added Features: Monetization & Playfulness --- */
+
+/* 1. Confetti Animation */
+.confetti-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  opacity: 0.85;
+  top: -20px;
+  border-radius: 2px;
+  animation: confettiFall 2.5s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* 2. Peace of Mind Meter */
+.safety-meter-card {
+  border-top: 4px solid var(--color-primary);
+}
+
+.safety-meter-bar {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(92, 141, 137, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0 6px;
+  position: relative;
+}
+
+.safety-meter-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.safety-meter-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 3. Sponsor Ad Banner */
+.ad-banner {
+  background-color: #fafaf5;
+  border: 1px dashed rgba(92, 141, 137, 0.25);
+  border-radius: var(--border-radius-md);
+  padding: 12px 14px;
+  margin: 8px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-midnight .ad-banner {
+  background-color: #161e2a;
+  border-color: rgba(79, 209, 197, 0.2);
+}
+
+.ad-badge {
+  background-color: #cbd5e0;
+  color: #4a5568;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+.theme-midnight .ad-badge {
+  background-color: #4a5568;
+  color: #cbd5e0;
+}
+
+/* 4. Mascot Chat Bubble */
+.mascot-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.mascot-avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-primary);
+}
+
+.mascot-bubble {
+  background-color: var(--card-bg);
+  border: 1.5px solid rgba(92, 141, 137, 0.1);
+  border-radius: 0px 16px 16px 16px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  color: var(--text-primary);
+  flex-grow: 1;
+}
+
+.mascot-bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: -1.5px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid rgba(92, 141, 137, 0.1);
+  border-left: 8px solid transparent;
+}
+
+.mascot-bubble::after {
+  content: "";
+  position: absolute;
+  left: -6.5px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 8px solid var(--card-bg);
+  border-left: 8px solid transparent;
+}
+
